@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Foosh</string>
+    <string name="textview">Michael is learning to create android apps!</string>
+    <string name="title">Greetings!</string>
+    <string name="action_settings">Settings</string>
+    <string name="button">Update The TextView</string>
+</resources>
