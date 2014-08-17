@@ -19,6 +19,13 @@ import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 
@@ -157,23 +164,64 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
         }
     }
 
+    private void queryBooks(String searchString) {
 
+        // Prepare your search string to be put in a URL
+        // It might have reserved characters or something
+        String urlString = "";
+        try {
+            urlString = URLEncoder.encode(searchString, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+
+            // if this fails for some reason, let the user know why
+            e.printStackTrace();
+            Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        // Create a client to perform networking
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        // Have the client get a JSONArray of data
+        // and define how to respond
+        client.get(QUERY_URL + urlString,
+                new JsonHttpResponseHandler() {
+
+                    @Override
+                    public void onSuccess(JSONObject jsonObject) {
+                        // Display a "Toast" message
+                        // to announce your success
+                        Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
+
+                        // 8. For now, just log results
+                        Log.d("omg android", jsonObject.toString());
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Throwable throwable, JSONObject error) {
+                        // Display a "Toast" message
+                        // to announce the failure
+                        Toast.makeText(getApplicationContext(), "Error: " + statusCode + " " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+
+                        // Log error message
+                        // to help solve any problems
+                        Log.e("omg android", statusCode + " " + throwable.getMessage());
+                    }
+                });
+    }
 
     @Override
     public void onClick(View view) {
         num++;
-        // Take what was typed into the EditText
-        // and use in TextView
-        mainTextView.setText(mainEditText.getText().toString()
-                + " is learning Android development!");
-
+        // 9. Take what was typed into the EditText and use in search
+        queryBooks(mainEditText.getText().toString());
+/*
         // Also add that value to the list shown in the ListView
         mNameList.add(mainEditText.getText().toString());
         mArrayAdapter.notifyDataSetChanged();
 
         // 6. The text you'd like to share has changed,
         // and you need to update
-        setShareIntent();
+        setShareIntent();*/
     }
     @Override
     public void onItemClick(AdapterView parent, View view, int position, long id) {
