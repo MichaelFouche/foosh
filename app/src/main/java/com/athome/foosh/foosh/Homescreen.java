@@ -89,20 +89,8 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
 
         // Set the ListView to use the ArrayAdapter
         mainListView.setAdapter(mJSONAdapter);
-/*
-        // 13. unpack the coverID from its trip inside your Intent
-        String coverID = this.getIntent().getExtras().getString("coverID");
 
-        // See if there is a valid coverID
-        if (coverID.length() > 0) {
 
-            // Use the ID to construct an image URL
-            mImageURL = IMAGE_URL_BASE + coverID + "-L.jpg";
-
-            // Use Picasso to load the image
-           // ImageView imageView = (ImageView) findViewById(R.id.img_cover);
-            Picasso.with(this).load(mImageURL).placeholder(R.drawable.img_books_loading).into(DetailActivity.imageView);
-        }*/
     }
 
     public void displayWelcome() {
