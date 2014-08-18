@@ -265,7 +265,7 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
             @Override
             public void onClick(View view) {
 
-                String text = mainTextView.getText().toString();
+                String text = mainEditText.getText().toString();
 
                 Intent storageIntent = new Intent(Homescreen.this, Storage.class);
                 storageIntent.putExtra("text", text);
