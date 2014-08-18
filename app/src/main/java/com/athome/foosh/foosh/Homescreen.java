@@ -35,6 +35,7 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
 
     TextView mainTextView;
     Button mainButton;
+    Button viewStorage;
     EditText mainEditText;
     ListView mainListView;
     //ArrayAdapter mArrayAdapter;
@@ -63,6 +64,9 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
         mainTextView = (TextView) findViewById(R.id.main_textview);
         mainButton = (Button) findViewById(R.id.main_button);
         mainButton.setOnClickListener(this);
+
+        viewStorage = (Button) findViewById(R.id.view_storage);
+        viewStorage.setOnClickListener(this);
 
         // 3. Access the EditText defined in layout XML
         mainEditText = (EditText) findViewById(R.id.main_edittext);
@@ -238,17 +242,41 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
 
     @Override
     public void onClick(View view) {
-        num++;
-        // 9. Take what was typed into the EditText and use in search
-        queryBooks(mainEditText.getText().toString());
-/*
-        // Also add that value to the list shown in the ListView
-        mNameList.add(mainEditText.getText().toString());
-        mArrayAdapter.notifyDataSetChanged();
+        mainButton.setOnClickListener(new View.OnClickListener() {
 
-        // 6. The text you'd like to share has changed,
-        // and you need to update
-        setShareIntent();*/
+            @Override
+            public void onClick(View view) {
+                num++;
+                // 9. Take what was typed into the EditText and use in search
+                queryBooks(mainEditText.getText().toString());
+                /*
+                // Also add that value to the list shown in the ListView
+                mNameList.add(mainEditText.getText().toString());
+                mArrayAdapter.notifyDataSetChanged();
+
+                // 6. The text you'd like to share has changed,
+                // and you need to update
+                setShareIntent();*/
+            }
+        });
+
+        viewStorage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                String text = mainTextView.getText().toString();
+
+                Intent storageIntent = new Intent(Homescreen.this, Storage.class);
+                storageIntent.putExtra("text", text);
+                startActivity(storageIntent);
+
+                //startActivity(new Intent(Homescreen.this,Storage.class));
+            }
+        });
+
+
+
     }
     @Override
     public void onItemClick(AdapterView parent, View view, int position, long id) {

@@ -26,7 +26,15 @@
         <activity
             android:name=".DetailActivity"
             android:label="@string/activity_details"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".Homescreen">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity
+            android:name=".Storage"
+            android:label="activity_storage"
+            android:parentActivityName=".Homescreen">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
