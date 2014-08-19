@@ -1,6 +1,7 @@
 package repository;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -15,6 +16,10 @@ import java.util.List;
  */
 public class DatasourceDAOImpl implements DatasourceDAO {
     private DatabaseHandler dbHelper;
+
+    public DatasourceDAOImpl(Context context){
+        dbHelper =  new DatabaseHandler(context);
+    }
 
     public void addAddress(Address address) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();

@@ -17,9 +17,9 @@ public class AddressActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_storage);
+        setContentView(R.layout.activity_address);
 
-        DatasourceDAO db = new DatasourceDAOImpl();
+        DatasourceDAO db = new DatasourceDAOImpl(this);
 
         /**
          * CRUD Operations
