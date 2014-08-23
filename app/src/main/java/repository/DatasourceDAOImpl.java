@@ -18,6 +18,7 @@ import java.util.List;
 public class DatasourceDAOImpl implements DatasourceDAO {
     private DatabaseHandler dbHelper;
     SQLiteDatabase db;
+
     public DatasourceDAOImpl(Context context){
         dbHelper =  new DatabaseHandler(context);
     }
@@ -33,13 +34,21 @@ public class DatasourceDAOImpl implements DatasourceDAO {
 
         open();
 
-        ContentValues values = new ContentValues();
+       ContentValues values = new ContentValues();
         values.put(DatabaseHandler.KEY_NAME, address.getName()); // Contact Name
         values.put(DatabaseHandler.KEY_LastName, address.getLastName()); // Contact Phone Number
         values.put(DatabaseHandler.KEY_Email, address.getEmail());
         values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber());
         values.put(DatabaseHandler.KEY_Address, address.getAddress());
 
+        /*
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHandler.KEY_NAME, "Mike"); // Contact Name
+        values.put(DatabaseHandler.KEY_LastName, "Fouche"); // Contact Phone Number
+        values.put(DatabaseHandler.KEY_Email, "fou@sa");
+        values.put(DatabaseHandler.KEY_PH_NO, "072");
+        values.put(DatabaseHandler.KEY_Address, "nederburg");
+*/
         // Inserting Row
         db.insert(DatabaseHandler.TABLE_ADDRESS, null, values);
         Log.i("Added:", " Values: " + "Id: " + address.getID() + " ,Name: " + address.getName()+ " ,Surname: " + address.getLastName() + " ,Email: " + address.getEmail()+ " ,Phone: " + address.getPhoneNumber() +   " ,Address: " + address.getAddress());
