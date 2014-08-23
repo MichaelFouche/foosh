@@ -34,21 +34,21 @@ public class AddressActivity extends Activity {
 
         ArrayList mNameList = new ArrayList();
 
-        arrayAdapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1,
-                mNameList);
+        arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,mNameList);
 
+        Log.i("Size of database",address.size()+"");
 
 
         for (Address cn : address) {
             mNameList.add( cn.getName() + ", " + cn.getPhoneNumber());
             String log = "Id: " + cn.getID() + " ,Name: " + cn.getName()+ " ,Surname: " + cn.getLastName() + " ,Phone: " + cn.getPhoneNumber() +  " ,Email: " + cn.getEmail()+ " ,Address: " + cn.getAddress();
             // Writing Contacts to log
-           // Log.d("Name: ", log);
-
+            Log.i("Address: ", log);
+            arrayAdapter.notifyDataSetChanged();
 
         }
         ListViewAddress.setAdapter(arrayAdapter);
+        arrayAdapter.notifyDataSetChanged();
 
     }
 }

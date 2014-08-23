@@ -18,7 +18,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String TABLE_ADDRESS = "address";
     public static final String KEY_ID = "ID";
     public static final String KEY_NAME = "Name";
-    public static final String KEY_PH_NO = "Phone_number";
+    public static final String KEY_PH_NO = "PhoneNumber";
     public static final String KEY_LastName = "LastName";
     public static final String KEY_Email = "Email";
     public static final String KEY_Address = "HomeAddress";
@@ -30,9 +30,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_ADDRESS_TABLE = "CREATE TABLE " + TABLE_ADDRESS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_LastName + " TEXT" + KEY_Email + " TEXT" + KEY_PH_NO + " TEXT" + KEY_Address + " TEXT" + ")";
+        String CREATE_ADDRESS_TABLE =
+                "CREATE TABLE " + TABLE_ADDRESS + "("
+                + KEY_ID + " INTEGER PRIMARY KEY,"
+                + KEY_NAME + " TEXT,"
+                + KEY_LastName + " TEXT"
+                + KEY_Email + " TEXT"
+                + KEY_PH_NO + " TEXT"
+                + KEY_Address + " TEXT" + ")";
         db.execSQL(CREATE_ADDRESS_TABLE);
     }
 

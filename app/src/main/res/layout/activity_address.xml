@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:id="@+id/relativeLayout1"
-        android:layout_height="fill_parent"
+        android:layout_height="29dp"
         android:layout_width="fill_parent"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="101dp"
         android:id="@+id/listView"
-        android:layout_weight="0.68" />
+        android:layout_weight="0.76" />
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

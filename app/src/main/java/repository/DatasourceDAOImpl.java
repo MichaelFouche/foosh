@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.athome.foosh.foosh.Address;
 import com.athome.foosh.foosh.DatabaseHandler;
@@ -16,26 +17,37 @@ import java.util.List;
  */
 public class DatasourceDAOImpl implements DatasourceDAO {
     private DatabaseHandler dbHelper;
-
+    SQLiteDatabase db;
     public DatasourceDAOImpl(Context context){
         dbHelper =  new DatabaseHandler(context);
     }
 
+    public void open(){
+        db = dbHelper.getWritableDatabase();
+    }
+    public void close(){
+        dbHelper.close();
+    }
+
     public void addAddress(Address address) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        open();
 
         ContentValues values = new ContentValues();
         values.put(DatabaseHandler.KEY_NAME, address.getName()); // Contact Name
         values.put(DatabaseHandler.KEY_LastName, address.getLastName()); // Contact Phone Number
         values.put(DatabaseHandler.KEY_Email, address.getEmail());
-        values.put(DatabaseHandler.KEY_Address, address.getAddress());
         values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber());
+        values.put(DatabaseHandler.KEY_Address, address.getAddress());
+
         // Inserting Row
         db.insert(DatabaseHandler.TABLE_ADDRESS, null, values);
-        db.close(); // Closing database connection
+        Log.i("Added:", " Values: " + "Id: " + address.getID() + " ,Name: " + address.getName()+ " ,Surname: " + address.getLastName() + " ,Email: " + address.getEmail()+ " ,Phone: " + address.getPhoneNumber() +   " ,Address: " + address.getAddress());
+        close(); // Closing database connection
     }
 
     public Address getAddress(int id) {
+        open();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         Cursor cursor = db.query(DatabaseHandler.TABLE_ADDRESS, new String[] { DatabaseHandler.KEY_ID,
@@ -47,10 +59,12 @@ public class DatasourceDAOImpl implements DatasourceDAO {
         Address address = new Address(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2));
         // return contact
+        close();
         return address;
     }
 
     public List<Address> getAllAddress() {
+        open();
         List<Address> contactList = new ArrayList<Address>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + DatabaseHandler.TABLE_ADDRESS;
@@ -74,38 +88,44 @@ public class DatasourceDAOImpl implements DatasourceDAO {
         }
 
         // return contact list
+        close();
         return contactList;
     }
 
     public int getAddressCount() {
+        open();
         String countQuery = "SELECT  * FROM " + DatabaseHandler.TABLE_ADDRESS;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
-
+        close();
         // return count
         return cursor.getCount();
     }
 
     public int updateAddress(Address address) {
+        open();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(DatabaseHandler.KEY_NAME, address.getName()); // Contact Name
         values.put(DatabaseHandler.KEY_LastName, address.getLastName()); // Contact Phone Number
         values.put(DatabaseHandler.KEY_Email, address.getEmail());
-        values.put(DatabaseHandler.KEY_Address, address.getAddress());
         values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber());
+        values.put(DatabaseHandler.KEY_Address, address.getAddress());
 
         // updating row
+        close();
         return db.update(DatabaseHandler.TABLE_ADDRESS, values, DatabaseHandler.KEY_ID + " = ?",
                 new String[] { String.valueOf(address.getID()) });
+
     }
 
     public void deleteAddress(Address address) {
+        open();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(DatabaseHandler.TABLE_ADDRESS, DatabaseHandler.KEY_ID + " = ?",
                 new String[] { String.valueOf(address.getID()) });
-        db.close();
+        close();
     }
 }
