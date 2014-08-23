@@ -33,6 +33,11 @@ public class AddressAddActivity extends Activity implements View.OnClickListener
         btAddress = (Button) findViewById(R.id.btnAddress);
         btAddress.setOnClickListener(this);
 
+        txtFname = (TextView) findViewById(R.id.txtFname);
+        txtLname = (TextView) findViewById(R.id.txtLname);
+        txtEmail = (TextView) findViewById(R.id.txtEmail);
+        txtCell = (TextView) findViewById(R.id.txtCell);
+        txtHAddress = (TextView) findViewById(R.id.txtHAddress);
     }
         @Override
     public void onClick(View v) {
@@ -42,10 +47,9 @@ public class AddressAddActivity extends Activity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 try{
-                    Toast.makeText(getBaseContext(),"Address added to the database",
-                            Toast.LENGTH_SHORT).show();
 
-                    //DatasourceDAO dba = new DatasourceDAOImpl();
+
+                    DatasourceDAO dba = new DatasourceDAOImpl(getApplicationContext());
 
                     /**
                      * CRUD Operations
@@ -53,7 +57,9 @@ public class AddressAddActivity extends Activity implements View.OnClickListener
                     // Inserting Contact
                     if( !(txtFname.getText().toString().equals("")) && !(txtLname.getText().toString().equals("")) && !(txtEmail.getText().toString().equals("")) && !(txtCell.getText().toString().equals("")) &&!(txtHAddress.getText().toString().equals(""))   )
                     {
-                      //   dba.addAddress(new Address(txtFname.getText().toString(), txtLname.getText().toString(), txtEmail.getText().toString(), txtCell.getText().toString(), txtHAddress.getText().toString() ));
+                         dba.addAddress(new Address(txtFname.getText().toString(), txtLname.getText().toString(), txtEmail.getText().toString(), txtCell.getText().toString(), txtHAddress.getText().toString() ));
+                         Toast.makeText(getBaseContext(),"Address added to the database",
+                                Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -64,7 +70,7 @@ public class AddressAddActivity extends Activity implements View.OnClickListener
                 }
                 catch(Exception e)
                 {
-                    Toast.makeText(getBaseContext(),"Unsuccessful, Address NOT added to the database!",
+                    Toast.makeText(getBaseContext(),"Unsuccessful, Address NOT added to the database!"+e,
                             Toast.LENGTH_SHORT).show();
                 }
 

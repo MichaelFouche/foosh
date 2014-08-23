@@ -13,15 +13,15 @@ import java.util.ArrayList;
  * Created by Bob on 2014/08/19.
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "addressManager";
     public static final String TABLE_ADDRESS = "address";
-    public static final String KEY_ID = "id";
-    public static final String KEY_NAME = "name";
-    public static final String KEY_PH_NO = "phone_number";
-    public static final String KEY_LastName = "phone_number";
-    public static final String KEY_Email = "phone_number";
-    public static final String KEY_Address = "phone_number";
+    public static final String KEY_ID = "ID";
+    public static final String KEY_NAME = "Name";
+    public static final String KEY_PH_NO = "Phone_number";
+    public static final String KEY_LastName = "LastName";
+    public static final String KEY_Email = "Email";
+    public static final String KEY_Address = "HomeAddress";
 
 
     public DatabaseHandler(Context context) {
@@ -44,57 +44,5 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /*public ArrayList<Object> getRowAsArray(String rowID)
-    {
-        // create an array list to store data from the database row.
-        // I would recommend creating a JavaBean compliant object
-        // to store this data instead.  That way you can ensure
-        // data types are correct.
-        ArrayList<Object> rowArray = new ArrayList<Object>();
-        Cursor cursor;
-
-        try
-        {
-            // this is a database call that creates a "cursor" object.
-            // the cursor object store the information collected from the
-            // database and is used to iterate through the data.
-            cursor = mDb.query
-                    (
-                            SQLITE_TABLE,
-                            new String[] { KEY_SURNAME, KEY_NAME, KEY_CELLNUM,KEY_EMAILADDR, KEY_HOMEADDR  },
-                            KEY_CELLNUM + " = '" +rowID+"'",
-                            null, null, null, null, null
-                    );
-            Log.w("quaery", String.valueOf(cursor.getColumnNames()));
-            // move the pointer to position zero in the cursor.
-            cursor.moveToFirst();
-
-            // if there is data available after the cursor's pointer, add
-            // it to the ArrayList that will be returned by the method.
-            if (!cursor.isAfterLast())
-            {
-                do
-                {
-                    rowArray.add(cursor.getString(0));
-                    rowArray.add(cursor.getString(1));
-                    rowArray.add(cursor.getString(2));
-                    rowArray.add(cursor.getString(3));
-                    rowArray.add(cursor.getString(4));
-                }
-                while (cursor.moveToNext());
-            }
-
-            // let java know that you are through with the cursor.
-            cursor.close();
-        }
-        catch (SQLException e)
-        {
-            Log.e("DB ERROR", e.toString());
-            e.printStackTrace();
-        }
-
-        // return the ArrayList containing the given row from the database.
-        return rowArray;
-    }*/
 
 }

@@ -23,8 +23,12 @@ public class Address {
     }
 
     public Address(String name, String lastname, String email, String phone_number, String address){
+
         this.name = name;
+        this.lastname = lastname;
+        this.email = email;
         this.phone_number = phone_number;
+        this.address = address;
     }
 
     public int getID(){
@@ -72,8 +76,6 @@ public class Address {
     public void setAddress(String address){
         this.address = address;
     }
-
-
 
     public String getPhoneNumber(){
         return this.phone_number;
