@@ -31,35 +31,24 @@ public class AddressActivity extends Activity {
         Log.d("Reading: ", "Reading all contacts..");
         List<Address> address = db.getAllAddress();
 
-        ArrayList results = new ArrayList();
+
+        ArrayList mNameList = new ArrayList();
+
+        arrayAdapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1,
+                mNameList);
+
+
 
         for (Address cn : address) {
-
-
+            mNameList.add( cn.getName() + ", " + cn.getPhoneNumber());
+           // String log = "Id: " + cn.getID() + " ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
+            // Writing Contacts to log
+           // Log.d("Name: ", log);
 
 
         }
-        ListViewAddress.setAdapter(Address);
+        ListViewAddress.setAdapter(arrayAdapter);
 
-
-            ArrayList image_details = getListData();
-            final ListView lv1 = (ListView) findViewById(R.id.custom_list);
-            lv1.setAdapter(new CustomListAdapter(this, image_details));
-            lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                @Override
-                public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                    Object o = lv1.getItemAtPosition(position);
-                    NewsItem newsData = (NewsItem) o;
-                    Toast.makeText(MainActivity.this, "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();
-                }
-
-            });
-
-
-            monthsListView.setAdapter(arrayAdapter);
-            String log = "Id: " + cn.getID() + " ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
-            // Writing Contacts to log
-            Log.d("Name: ", log);
     }
 }
