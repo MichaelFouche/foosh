@@ -284,7 +284,7 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
             @Override
             public void onClick(View view) {
 
-                Intent addressIntent = new Intent(Homescreen.this, AddressActivity.class);
+                Intent addressIntent = new Intent(Homescreen.this, AddressAddActivity.class);
              //   storageIntent.putExtra("text", text);
                 startActivity(addressIntent);
          }

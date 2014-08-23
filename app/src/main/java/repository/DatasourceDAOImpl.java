@@ -26,8 +26,10 @@ public class DatasourceDAOImpl implements DatasourceDAO {
 
         ContentValues values = new ContentValues();
         values.put(DatabaseHandler.KEY_NAME, address.getName()); // Contact Name
-        values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber()); // Contact Phone Number
-
+        values.put(DatabaseHandler.KEY_LastName, address.getLastName()); // Contact Phone Number
+        values.put(DatabaseHandler.KEY_Email, address.getEmail());
+        values.put(DatabaseHandler.KEY_Address, address.getAddress());
+        values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber());
         // Inserting Row
         db.insert(DatabaseHandler.TABLE_ADDRESS, null, values);
         db.close(); // Closing database connection
@@ -62,7 +64,10 @@ public class DatasourceDAOImpl implements DatasourceDAO {
                 Address address = new Address();
                 address.setID(Integer.parseInt(cursor.getString(0)));
                 address.setName(cursor.getString(1));
-                address.setPhoneNumber(cursor.getString(2));
+                address.setLastName(cursor.getString(2));
+                address.setEmail(cursor.getString(3));
+                address.setPhoneNumber(cursor.getString(4));
+                address.setAddress(cursor.getString(5));
                 // Adding contact to list
                 contactList.add(address);
             } while (cursor.moveToNext());
@@ -86,7 +91,10 @@ public class DatasourceDAOImpl implements DatasourceDAO {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseHandler.KEY_NAME, address.getName());
+        values.put(DatabaseHandler.KEY_NAME, address.getName()); // Contact Name
+        values.put(DatabaseHandler.KEY_LastName, address.getLastName()); // Contact Phone Number
+        values.put(DatabaseHandler.KEY_Email, address.getEmail());
+        values.put(DatabaseHandler.KEY_Address, address.getAddress());
         values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber());
 
         // updating row

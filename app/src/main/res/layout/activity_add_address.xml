@@ -2,49 +2,20 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+    android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Address Book"
-        android:id="@+id/textView" />
+        android:text="Enter new Address:"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView2" />
 
-    <LinearLayout
-        android:id="@+id/relativeLayout1"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-
-        <TextView
-            android:id="@+id/FirstText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:layout_weight="1">
-        </TextView>
-
-        <TextView
-            android:id="@+id/SecondText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Phone number"
-            android:layout_weight="2">
-        </TextView>
-
-    </LinearLayout>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="101dp"
-        android:id="@+id/listView"
-        android:layout_weight="0.68" />
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.18">
+        android:layout_weight="0.01">
         <!-- Row 1 with single column -->
         <TableRow
             android:id="@+id/tableRow2"
@@ -57,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText"
+                android:id="@+id/txtFname"
                 android:layout_gravity="center_horizontal"
                 android:layout_column="2"
                 android:hint="First Name" />
@@ -70,7 +41,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText2"
+                android:id="@+id/txtLname"
                 android:layout_column="2"
                 android:hint="Surname" />
         </TableRow>
@@ -91,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/editText3"
+                android:id="@+id/txtEmail"
                 android:layout_column="2"
                 android:hint="Email" />
         </TableRow>
@@ -105,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:ems="10"
-                android:id="@+id/editText4"
+                android:id="@+id/txtCell"
                 android:layout_column="2"
                 android:hint="Cellphone" />
         </TableRow>
@@ -119,9 +90,39 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress"
                 android:ems="10"
-                android:id="@+id/editText5"
+                android:id="@+id/txtHAddress"
                 android:layout_column="2"
                 android:hint="Home Address" />
         </TableRow>
     </TableLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/btnSubmit"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:id="@+id/btnHome"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Addressbook"
+            android:id="@+id/btnAddress"
+            android:layout_gravity="right"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+    </LinearLayout>
 </LinearLayout>

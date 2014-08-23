@@ -7,7 +7,10 @@ public class Address {
 
     int id;
     String name;
+    String lastname;
+    String email;
     String phone_number;
+    String address;
 
     public Address(){
 
@@ -19,7 +22,7 @@ public class Address {
         this.phone_number = phone_number;
     }
 
-    public Address(String name, String phone_number){
+    public Address(String name, String lastname, String email, String phone_number, String address){
         this.name = name;
         this.phone_number = phone_number;
     }
@@ -40,8 +43,36 @@ public class Address {
 
 
     public void setName(String name){
-        this.name = name;
+        this.lastname = lastname;
     }
+
+    public String getLastName(){
+        return this.lastname;
+    }
+
+
+    public void setLastName(String lastname){
+        this.lastname = lastname;
+    }
+
+    public String getEmail(){
+        return this.email;
+    }
+
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public String getAddress(){
+        return this.address;
+    }
+
+
+    public void setAddress(String address){
+        this.address = address;
+    }
+
 
 
     public String getPhoneNumber(){

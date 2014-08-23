@@ -33,7 +33,7 @@
         </activity>
         <activity
             android:name=".Storage"
-            android:label="activity_storage"
+            android:label="Test Internal Storage"
             android:parentActivityName=".Homescreen">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -41,7 +41,15 @@
         </activity>
         <activity
             android:name=".AddressActivity"
-            android:label="activity_address"
+            android:label="Address book"
+            android:parentActivityName=".Homescreen">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity
+            android:name=".AddressAddActivity"
+            android:label="Add New Address"
             android:parentActivityName=".Homescreen">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
