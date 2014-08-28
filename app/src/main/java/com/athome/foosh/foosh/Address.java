@@ -47,7 +47,7 @@ public class Address {
 
 
     public void setName(String name){
-        this.lastname = lastname;
+        this.name = name;
     }
 
     public String getLastName(){
