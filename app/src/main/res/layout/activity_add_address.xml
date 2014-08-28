@@ -2,20 +2,22 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/abc_ab_bottom_solid_light_holo">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Enter new Address:"
+        android:text="Enter new Contact details:"
         android:layout_marginTop="20dp"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:textColor="#ff2536ff" />
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.01">
+        android:layout_weight="0.00">
         <!-- Row 1 with single column -->
         <TableRow
             android:id="@+id/tableRow2"
