@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Bookmaster General</string>
+    <string name="app_name">Foosh Contact Manager</string>
     <string name="textview">Search For Books!</string>
     <string name="button">Search</string>
     <string name="hint">Title and/or Author</string>
     <string name="save_button">Save Text</string>
     <string name="action_settings">Settings</string>
     <string name="activity_details">Book Details</string>
+
+    <string name="Address">Address Book</string>
+    <string name="address_col1">First Name</string>
+    <string name="address_col2">Phone Number</string>
+    <string name="address_detail">Details</string>
+    <string name="address_fname">First Name</string>
+    <string name="address_surname">Surname</string>
+    <string name="address_email">Email</string>
+    <string name="address_cell">Phone number</string>
+    <string name="address_address">Address</string>
+    <string name="add_contact_heading">Add New Contact</string>
+    <string name="add_contact_submit">Submit</string>
+    <string name="add_contact_home">Home</string>
+    <string name="add_contact_addressbook">AddressBook</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="view_storage">View Storage</string>
+
 </resources>

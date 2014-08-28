@@ -16,7 +16,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View Storage"
+                android:text="@string/view_storage"
                 android:id="@+id/view_storage"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="2dp"/>
@@ -26,7 +26,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Contact"
+                android:text="@string/add_contact"
                 android:id="@+id/btnAddContact"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="20dp"/>
@@ -34,7 +34,7 @@
             <Button
                 android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:text="Address Book"
+                android:text="@string/Address"
                 android:id="@+id/address_button"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="12dp" />

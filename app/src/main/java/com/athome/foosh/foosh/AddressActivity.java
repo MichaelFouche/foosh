@@ -1,11 +1,13 @@
 package com.athome.foosh.foosh;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,12 +22,13 @@ import repository.DatasourceDAOImpl;
 /**
  * Created by Bob on 2014/08/19.
  */
-public class AddressActivity extends Activity implements AdapterView.OnItemClickListener {
+public class AddressActivity extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener {
     ListView ListViewAddress;
     ArrayAdapter arrayAdapter;
     DatasourceDAO db = new DatasourceDAOImpl(this);
     List<Address> address;
     ArrayList mNameList;
+    Button btnAddNewContact;
     TextView txtVName, txtVSurname, txtVEmail, txtVCell, txtVAddress;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
         Log.d("Reading: ", "Reading all contacts..");
         address = db.getAllAddress();
 
+        btnAddNewContact = (Button) findViewById(R.id.btnAddNewContact);
+        btnAddNewContact.setOnClickListener(this);
 
         mNameList = new ArrayList();
 
@@ -48,7 +53,7 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
 
 
         for (Address cn : address) {
-            mNameList.add( cn.getName() + ", \t\t       " + cn.getPhoneNumber());
+            mNameList.add( cn.getName() + ", \t       " + cn.getPhoneNumber());
             String log = "Name: " + cn.getName()+ " ,Surname: " + cn.getLastName() + " ,Phone: " + cn.getPhoneNumber() +  " ,Email: " + cn.getEmail()+ " ,Address: " + cn.getAddress();
             // Writing Contacts to log
             Log.i("Address: ", log);
@@ -71,12 +76,25 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
                 txtVCell = (TextView) findViewById(R.id.txtVCell);
                 txtVAddress = (TextView) findViewById(R.id.txtVAddress);
 
-                txtVName.setText("Name "+ad.getName());
+                txtVName.setText("Name: "+ad.getName());
                 txtVSurname.setText("Last Name: "+ad.getLastName());
                 txtVEmail.setText("Email: "+ad.getEmail());
                 txtVCell.setText("Cell: "+ad.getPhoneNumber());
                 txtVAddress.setText("Address: "+ad.getAddress());;
             }
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        btnAddNewContact.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent addressIntent = new Intent(AddressActivity.this, AddressAddActivity.class);
+                //   storageIntent.putExtra("text", text);
+                startActivity(addressIntent);
+            }
+        });
     }
 }

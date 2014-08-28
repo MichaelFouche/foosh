@@ -9,10 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Enter new Contact details:"
+        android:text="@string/add_contact_heading"
         android:layout_marginTop="20dp"
         android:id="@+id/textView2"
-        android:textColor="#ff2536ff" />
+        android:textColor="#ff2536ff"
+        android:hint="@string/add_contact_heading" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -33,7 +34,7 @@
                 android:id="@+id/txtFname"
                 android:layout_gravity="center_horizontal"
                 android:layout_column="2"
-                android:hint="First Name" />
+                android:hint="@string/address_fname" />
         </TableRow>
         <TableRow
             android:layout_width="wrap_content"
@@ -45,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtLname"
                 android:layout_column="2"
-                android:hint="Surname" />
+                android:hint="@string/address_surname" />
         </TableRow>
 
         <TableRow
@@ -66,7 +67,7 @@
                 android:ems="10"
                 android:id="@+id/txtEmail"
                 android:layout_column="2"
-                android:hint="Email" />
+                android:hint="@string/address_email" />
         </TableRow>
         <TableRow
             android:layout_width="wrap_content"
@@ -80,7 +81,7 @@
                 android:ems="10"
                 android:id="@+id/txtCell"
                 android:layout_column="2"
-                android:hint="Cellphone" />
+                android:hint="@string/address_cell" />
         </TableRow>
         <TableRow
             android:layout_width="wrap_content"
@@ -94,7 +95,7 @@
                 android:ems="10"
                 android:id="@+id/txtHAddress"
                 android:layout_column="2"
-                android:hint="Home Address" />
+                android:hint="@string/address_address" />
         </TableRow>
     </TableLayout>
     <LinearLayout
@@ -104,7 +105,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
+            android:text="@string/add_contact_submit"
             android:id="@+id/btnSubmit"
             android:layout_gravity="center_horizontal"
             android:paddingLeft="20dp"
@@ -113,7 +114,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Home"
+            android:text="@string/add_contact_home"
             android:id="@+id/btnHome"
             android:paddingLeft="20dp"
             android:paddingRight="20dp" />
@@ -121,7 +122,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Addressbook"
+            android:text="@string/Address"
             android:id="@+id/btnAddress"
             android:layout_gravity="right"
             android:paddingLeft="20dp"
