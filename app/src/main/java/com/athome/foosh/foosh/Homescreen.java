@@ -37,6 +37,7 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
     Button mainButton;
     Button viewStorage;
     Button addressBtn;
+    Button btnAddContact;
     EditText mainEditText;
     ListView mainListView;
     //ArrayAdapter mArrayAdapter;
@@ -71,6 +72,9 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
 
         addressBtn = (Button) findViewById(R.id.address_button);
         addressBtn.setOnClickListener(this);
+
+        btnAddContact = (Button) findViewById(R.id.btnAddContact);
+        btnAddContact.setOnClickListener(this);
 
         // 3. Access the EditText defined in layout XML
         mainEditText = (EditText) findViewById(R.id.main_edittext);
@@ -284,10 +288,20 @@ public class Homescreen extends Activity implements View.OnClickListener, Adapte
             @Override
             public void onClick(View view) {
 
-                Intent addressIntent = new Intent(Homescreen.this, AddressAddActivity.class);
+                Intent addressIntent = new Intent(Homescreen.this, AddressActivity.class);
              //   storageIntent.putExtra("text", text);
                 startActivity(addressIntent);
          }
+        });
+        btnAddContact.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent addressIntent = new Intent(Homescreen.this, AddressAddActivity.class);
+                //   storageIntent.putExtra("text", text);
+                startActivity(addressIntent);
+            }
         });
 
     }
