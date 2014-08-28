@@ -48,7 +48,7 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
 
 
         for (Address cn : address) {
-            mNameList.add( cn.getName() + ", " + cn.getPhoneNumber());
+            mNameList.add( cn.getName() + ", \t\t       " + cn.getPhoneNumber());
             String log = "Name: " + cn.getName()+ " ,Surname: " + cn.getLastName() + " ,Phone: " + cn.getPhoneNumber() +  " ,Email: " + cn.getEmail()+ " ,Address: " + cn.getAddress();
             // Writing Contacts to log
             Log.i("Address: ", log);
