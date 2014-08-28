@@ -36,10 +36,10 @@ public class DatasourceDAOImpl implements DatasourceDAO {
 
        ContentValues values = new ContentValues();
         values.put(DatabaseHandler.KEY_NAME, address.getName()); // Contact Name
-        values.put(DatabaseHandler.KEY_LastName, address.getLastName()); // Contact Phone Number
-        values.put(DatabaseHandler.KEY_Email, address.getEmail());
+        values.put(DatabaseHandler.KEY_LASTNAME, address.getLastName()); // Contact Phone Number
+        values.put(DatabaseHandler.KEY_EMAIL, address.getEmail());
         values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber());
-        values.put(DatabaseHandler.KEY_Address, address.getAddress());
+        values.put(DatabaseHandler.KEY_ADDRESS, address.getAddress());
 
         /*
         ContentValues values = new ContentValues();
@@ -118,10 +118,10 @@ public class DatasourceDAOImpl implements DatasourceDAO {
 
         ContentValues values = new ContentValues();
         values.put(DatabaseHandler.KEY_NAME, address.getName()); // Contact Name
-        values.put(DatabaseHandler.KEY_LastName, address.getLastName()); // Contact Phone Number
-        values.put(DatabaseHandler.KEY_Email, address.getEmail());
+        values.put(DatabaseHandler.KEY_LASTNAME, address.getLastName()); // Contact Phone Number
+        values.put(DatabaseHandler.KEY_EMAIL, address.getEmail());
         values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber());
-        values.put(DatabaseHandler.KEY_Address, address.getAddress());
+        values.put(DatabaseHandler.KEY_ADDRESS, address.getAddress());
 
         // updating row
         close();

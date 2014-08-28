@@ -13,15 +13,16 @@ import java.util.ArrayList;
  * Created by Bob on 2014/08/19.
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "addressManager.db";
     public static final String TABLE_ADDRESS = "AMaddress";
     public static final String KEY_ID = "DBID";
     public static final String KEY_NAME = "DBName";
     public static final String KEY_PH_NO = "DBPhone_number";
-    public static final String KEY_LastName = "DBLastName";
-    public static final String KEY_Email = "DBEmail";
-    public static final String KEY_Address = "DBHomeAddress";
+    public static final String KEY_LASTNAME = "DBLastName";
+    public static final String KEY_EMAIL = "DBEmail";
+    public static final String KEY_ADDRESS = "DBHomeAddress";
+
 
 
     public DatabaseHandler(Context context) {
@@ -34,10 +35,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "CREATE TABLE IF NOT EXISTS " + TABLE_ADDRESS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY autoincrement,"
                 + KEY_NAME + " TEXT,"
-                + KEY_LastName + " TEXT"
-                + KEY_Email + " TEXT"
-                + KEY_PH_NO + " TEXT"
-                + KEY_Address + " TEXT" + ")";
+                + KEY_LASTNAME + " TEXT, "
+                + KEY_EMAIL + " TEXT, "
+                + KEY_PH_NO + " TEXT, "
+                + KEY_ADDRESS + " TEXT" + ");";
         db.execSQL(CREATE_ADDRESS_TABLE);
     }
 
