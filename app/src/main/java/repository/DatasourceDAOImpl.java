@@ -41,14 +41,7 @@ public class DatasourceDAOImpl implements DatasourceDAO {
         values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber());
         values.put(DatabaseHandler.KEY_ADDRESS, address.getAddress());
 
-        /*
-        ContentValues values = new ContentValues();
-        values.put(DatabaseHandler.KEY_NAME, "Mike"); // Contact Name
-        values.put(DatabaseHandler.KEY_LastName, "Fouche"); // Contact Phone Number
-        values.put(DatabaseHandler.KEY_Email, "fou@sa");
-        values.put(DatabaseHandler.KEY_PH_NO, "072");
-        values.put(DatabaseHandler.KEY_Address, "nederburg");
-*/
+
         // Inserting Row
         db.insert(DatabaseHandler.TABLE_ADDRESS, null, values);
         Log.i("Added:", " Values: " + "Id: " + address.getID() + " ,Name: " + address.getName()+ " ,Surname: " + address.getLastName() + " ,Email: " + address.getEmail()+ " ,Phone: " + address.getPhoneNumber() +   " ,Address: " + address.getAddress());
@@ -112,29 +105,30 @@ public class DatasourceDAOImpl implements DatasourceDAO {
         return cursor.getCount();
     }
 
-    public int updateAddress(Address address) {
+    public int updateAddress(int id, Address address) {
         open();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(DatabaseHandler.KEY_NAME, address.getName()); // Contact Name
-        values.put(DatabaseHandler.KEY_LASTNAME, address.getLastName()); // Contact Phone Number
+        values.put(DatabaseHandler.KEY_LASTNAME, address.getLastName());
         values.put(DatabaseHandler.KEY_EMAIL, address.getEmail());
         values.put(DatabaseHandler.KEY_PH_NO, address.getPhoneNumber());
         values.put(DatabaseHandler.KEY_ADDRESS, address.getAddress());
 
         // updating row
-        close();
-        return db.update(DatabaseHandler.TABLE_ADDRESS, values, DatabaseHandler.KEY_ID + " = ?",
-                new String[] { String.valueOf(address.getID()) });
 
+         db.update(DatabaseHandler.TABLE_ADDRESS, values, DatabaseHandler.KEY_ID + " = ?",
+                new String[] { String.valueOf(address.getID()) });
+        close();
+        return 1;
     }
 
-    public void deleteAddress(Address address) {
+    public void deleteAddress(String id) {
         open();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(DatabaseHandler.TABLE_ADDRESS, DatabaseHandler.KEY_ID + " = ?",
-                new String[] { String.valueOf(address.getID()) });
+                new String[] { id});
         close();
     }
 }

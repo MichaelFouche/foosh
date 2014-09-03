@@ -14,6 +14,6 @@ public interface DatasourceDAO {
     public Address getAddress(int id);
     public List<Address> getAllAddress();
     public int getAddressCount() ;
-    public int updateAddress(Address address);
-    public void deleteAddress(Address address) ;
+    public int updateAddress(int id, Address address);
+    public void deleteAddress(String id) ;
 }

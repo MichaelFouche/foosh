@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -29,7 +30,10 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
     List<Address> address;
     ArrayList mNameList;
     Button btnAddNewContact;
+    Button btnDeleteContact;
+    Button btnUpdateContact;
     TextView txtVName, txtVSurname, txtVEmail, txtVCell, txtVAddress;
+    int currentActiveItemID;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,12 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
 
         btnAddNewContact = (Button) findViewById(R.id.btnAddNewContact);
         btnAddNewContact.setOnClickListener(this);
+
+        btnDeleteContact = (Button) findViewById(R.id.btnDeleteContact);
+        btnDeleteContact.setOnClickListener(this);
+
+        btnUpdateContact = (Button) findViewById(R.id.btnUpdateContact);
+        btnUpdateContact.setOnClickListener(this);
 
         mNameList = new ArrayList();
 
@@ -62,7 +72,7 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
         }
         ListViewAddress.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
-
+        currentActiveItemID = 0;
     }
 
     @Override
@@ -70,6 +80,7 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
         //List<Address> address = db.getAllAddress();
         for (Address ad : address) {
             if(ad.getID()==(position+1)){
+                currentActiveItemID = (position+1);
                 txtVName = (TextView) findViewById(R.id.txtVName);
                 txtVSurname =(TextView) findViewById(R.id.txtVSurname);
                 txtVEmail = (TextView) findViewById(R.id.txtVEmail);
@@ -94,6 +105,61 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
                 Intent addressIntent = new Intent(AddressActivity.this, AddressAddActivity.class);
                 //   storageIntent.putExtra("text", text);
                 startActivity(addressIntent);
+            }
+        });
+        btnUpdateContact.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                try{
+                    DatasourceDAO dba = new DatasourceDAOImpl(getApplicationContext());
+
+                    /**
+                     * CRUD Operations
+                     * */
+                    // updating Contact
+                    if( !(txtVName.getText().toString().equals("")) && !(txtVSurname.getText().toString().equals("")) && !(txtVEmail.getText().toString().equals("")) && !(txtVCell.getText().toString().equals("")) &&!(txtVAddress.getText().toString().equals("")) &&currentActiveItemID!=0  )
+                    {
+                        dba.updateAddress(currentActiveItemID,new Address(txtVName.getText().toString(), txtVSurname.getText().toString(), txtVEmail.getText().toString(), txtVCell.getText().toString(), txtVAddress.getText().toString() ));
+                        Toast.makeText(getBaseContext(), "Address updated",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getBaseContext(),"Unsuccessful, Please enter all the fields!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                catch(Exception e)
+                {
+                    Toast.makeText(getBaseContext(),"Unsuccessful, Address NOT updated!"+e,
+                            Toast.LENGTH_SHORT).show();
+                }
+                //db stuff
+
+                //update list
+
+                //update textboxes
+            }
+        });
+        btnDeleteContact.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                try{
+                    DatasourceDAO dba = new DatasourceDAOImpl(getApplicationContext());
+                    dba.deleteAddress(currentActiveItemID+"");
+                    Toast.makeText(getBaseContext(), "Address deleted",
+                            Toast.LENGTH_SHORT).show();
+
+                }
+                catch(Exception e)
+                {
+                    Toast.makeText(getBaseContext(),"Unsuccessful, Address NOT deleted!"+e,
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

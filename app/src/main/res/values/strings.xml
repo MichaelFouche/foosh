@@ -24,5 +24,6 @@
     <string name="add_contact_addressbook">AddressBook</string>
     <string name="add_contact">Add Contact</string>
     <string name="view_storage">View Storage</string>
-
+    <string name="address_delBtn">Delete contact</string>
+    <string name="address_saveBtn">Save changes</string>
 </resources>
