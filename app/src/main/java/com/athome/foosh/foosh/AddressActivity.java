@@ -33,7 +33,7 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
     Button btnDeleteContact;
     Button btnUpdateContact;
     TextView txtVName, txtVSurname, txtVEmail, txtVCell, txtVAddress;
-    int currentActiveItemID;
+    int currentActiveItemID,currentActiveItemNum;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,23 +77,48 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //List<Address> address = db.getAllAddress();
-        for (Address ad : address) {
-            if(ad.getID()==(position+1)){
-                currentActiveItemID = (position+1);
-                txtVName = (TextView) findViewById(R.id.txtVName);
-                txtVSurname =(TextView) findViewById(R.id.txtVSurname);
-                txtVEmail = (TextView) findViewById(R.id.txtVEmail);
-                txtVCell = (TextView) findViewById(R.id.txtVCell);
-                txtVAddress = (TextView) findViewById(R.id.txtVAddress);
+        List<Address> ad = db.getAllAddress();
+        int index = ad.get(position).getID();
 
-                txtVName.setText("Name: "+ad.getName());
-                txtVSurname.setText("Last Name: "+ad.getLastName());
-                txtVEmail.setText("Email: "+ad.getEmail());
-                txtVCell.setText("Cell: "+ad.getPhoneNumber());
-                txtVAddress.setText("Address: "+ad.getAddress());;
-            }
+        currentActiveItemID = (index);
+        currentActiveItemNum = position;
+
+        txtVName = (TextView) findViewById(R.id.txtVName);
+        txtVSurname =(TextView) findViewById(R.id.txtVSurname);
+        txtVEmail = (TextView) findViewById(R.id.txtVEmail);
+        txtVCell = (TextView) findViewById(R.id.txtVCell);
+        txtVAddress = (TextView) findViewById(R.id.txtVAddress);
+
+        txtVName.setText(""+ad.get(position).getName());
+        txtVSurname.setText(""+ad.get(position).getLastName());
+        txtVEmail.setText(""+ad.get(position).getEmail());
+        txtVCell.setText(""+ad.get(position).getPhoneNumber());
+        txtVAddress.setText(""+ad.get(position).getAddress());;
+
+
+    }
+    public void updateTextBoxes(int position){
+        List<Address> ad = db.getAllAddress();
+        int index = ad.get(position).getID();
+
+        txtVName.setText(""+ad.get(position).getName());
+        txtVSurname.setText(""+ad.get(position).getLastName());
+        txtVEmail.setText(""+ad.get(position).getEmail());
+        txtVCell.setText(""+ad.get(position).getPhoneNumber());
+        txtVAddress.setText(""+ad.get(position).getAddress());;
+    }
+    public void updateListView()
+    {
+        address = db.getAllAddress();
+        mNameList.clear();
+        for (Address cn : address) {
+            mNameList.add( cn.getName() + ", \t       " + cn.getPhoneNumber());
+            String log = "Name: " + cn.getName()+ " ,Surname: " + cn.getLastName() + " ,Phone: " + cn.getPhoneNumber() +  " ,Email: " + cn.getEmail()+ " ,Address: " + cn.getAddress();
+            // Writing Contacts to log
+            Log.i("Address: ", log);
+            arrayAdapter.notifyDataSetChanged();
         }
+        arrayAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -111,55 +136,77 @@ public class AddressActivity extends Activity implements AdapterView.OnItemClick
 
             @Override
             public void onClick(View view) {
-
-                try{
-                    DatasourceDAO dba = new DatasourceDAOImpl(getApplicationContext());
-
-                    /**
-                     * CRUD Operations
-                     * */
-                    // updating Contact
-                    if( !(txtVName.getText().toString().equals("")) && !(txtVSurname.getText().toString().equals("")) && !(txtVEmail.getText().toString().equals("")) && !(txtVCell.getText().toString().equals("")) &&!(txtVAddress.getText().toString().equals("")) &&currentActiveItemID!=0  )
-                    {
-                        dba.updateAddress(currentActiveItemID,new Address(txtVName.getText().toString(), txtVSurname.getText().toString(), txtVEmail.getText().toString(), txtVCell.getText().toString(), txtVAddress.getText().toString() ));
-                        Toast.makeText(getBaseContext(), "Address updated",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(getBaseContext(),"Unsuccessful, Please enter all the fields!",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-                catch(Exception e)
-                {
-                    Toast.makeText(getBaseContext(),"Unsuccessful, Address NOT updated!"+e,
+                if(currentActiveItemID==0){
+                    Toast.makeText(getBaseContext(), "Please select a contact from the address book above",
                             Toast.LENGTH_SHORT).show();
                 }
-                //db stuff
+                else
+                {
+                    try{
+                        DatasourceDAO dba = new DatasourceDAOImpl(getApplicationContext());
 
-                //update list
+                        /**
+                         * CRUD Operations
+                         * */
+                        // updating Contact
+                        if( !(txtVName.getText().toString().equals("")) && !(txtVSurname.getText().toString().equals("")) && !(txtVEmail.getText().toString().equals("")) && !(txtVCell.getText().toString().equals("")) &&!(txtVAddress.getText().toString().equals("")) &&currentActiveItemID!=0  )
+                        {
+                            dba.updateAddress(currentActiveItemID,new Address(txtVName.getText().toString(), txtVSurname.getText().toString(), txtVEmail.getText().toString(), txtVCell.getText().toString(), txtVAddress.getText().toString() ));
+                            Toast.makeText(getBaseContext(), "Address updated",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(getBaseContext(),"Unsuccessful, Please enter all the fields!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
 
-                //update textboxes
+                    }
+                    catch(Exception e)
+                    {
+                        Toast.makeText(getBaseContext(),"Unsuccessful, Address NOT updated!"+e,
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    //db stuff
+
+                    //update list
+                    updateListView();
+                    //update textboxes
+                    updateTextBoxes(currentActiveItemNum);
+                }
+
+
             }
         });
         btnDeleteContact.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                try{
-                    DatasourceDAO dba = new DatasourceDAOImpl(getApplicationContext());
-                    dba.deleteAddress(currentActiveItemID+"");
-                    Toast.makeText(getBaseContext(), "Address deleted",
+                if (currentActiveItemID == 0) {
+                    Toast.makeText(getBaseContext(), "Please select a contact from the address book above",
                             Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    try {
 
+
+                        DatasourceDAO dba = new DatasourceDAOImpl(getApplicationContext());
+                        dba.deleteAddress(currentActiveItemID + "");
+                        Toast.makeText(getBaseContext(), "Address deleted",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                    catch(Exception e)
+                    {
+                        Toast.makeText(getBaseContext(),"Unsuccessful, Address NOT deleted!"+e,
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    updateListView();
+                    updateTextBoxes(currentActiveItemNum);
                 }
-                catch(Exception e)
-                {
-                    Toast.makeText(getBaseContext(),"Unsuccessful, Address NOT deleted!"+e,
-                            Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
     }

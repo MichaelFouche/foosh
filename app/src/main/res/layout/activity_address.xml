@@ -39,7 +39,8 @@
             android:layout_height="wrap_content"
             android:text="@string/address_col1"
             android:layout_weight="0.54"
-            android:textColor="#ff14b7ff">
+            android:textColor="#ff14b7ff"
+            android:textStyle="bold">
         </TextView>
 
         <TextView
@@ -48,14 +49,15 @@
             android:layout_height="wrap_content"
             android:text="@string/address_col2"
             android:layout_weight="2"
-            android:textColor="#ff14b7ff">
+            android:textColor="#ff14b7ff"
+            android:textStyle="bold">
         </TextView>
 
     </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="101dp"
+        android:layout_height="100dp"
         android:id="@+id/listView"
         android:layout_weight="0.76" />
 
@@ -67,91 +69,132 @@
         android:id="@+id/textView2"
         android:textColor="#ff2536ff" />
 
-    <TableLayout
-        android:layout_width="fill_parent"
+
+    //-----------
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.18">
-        <!-- Row 1 with single column -->
-        <TableRow
-            android:id="@+id/tableRow2"
+        android:orientation="horizontal">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="120dp"
+            android:text="@string/address_fname"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:textStyle="bold" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="15"
-                android:id="@+id/txtVName"
-                android:layout_gravity="center_horizontal"
-                android:layout_column="2"
-                android:hint="@string/add_contact_heading"
-                android:editable="false" />
-        </TableRow>
-        <TableRow
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="15"
+            android:id="@+id/txtVName"
+            android:layout_gravity="center_horizontal"
+            android:layout_column="2"
+            android:hint="@string/address_fname"
+            android:editable="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-           >
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="120dp"
+            android:text="@string/address_surname"
+            android:id="@+id/textView4"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtVSurname"
-                android:layout_column="2"
-                android:hint="@string/address_surname" />
-        </TableRow>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtVSurname"
+            android:layout_column="2"
+            android:hint="@string/address_surname" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-        </TableRow>
-
-        <TableRow
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="120dp"
+            android:text="@string/address_email"
+            android:id="@+id/textView5"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="15"
-                android:id="@+id/txtVEmail"
-                android:layout_column="2"
-                android:hint="@string/address_email" />
-        </TableRow>
-        <TableRow
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="15"
+            android:id="@+id/txtVEmail"
+            android:layout_column="2"
+            android:hint="@string/address_email" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="120dp"
+            android:text="@string/address_cell"
+            android:id="@+id/textView6"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:ems="15"
-                android:id="@+id/txtVCell"
-                android:layout_column="2"
-                android:hint="@string/address_cell" />
-        </TableRow>
-        <TableRow
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="15"
+            android:id="@+id/txtVCell"
+            android:layout_column="2"
+            android:hint="@string/address_cell" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="120dp"
+            android:text="@string/address_address"
+            android:id="@+id/textView7"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPostalAddress"
-                android:ems="15"
-                android:id="@+id/txtVAddress"
-                android:layout_column="2"
-                android:hint="@string/address_address" />
-        </TableRow>
-    </TableLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress"
+            android:ems="15"
+            android:id="@+id/txtVAddress"
+            android:layout_column="2"
+        android:hint="@string/address_address" />
+    </LinearLayout>
+    //--------------
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

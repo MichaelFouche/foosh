@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.SyncStateContract;
 import android.util.Log;
 
 import com.athome.foosh.foosh.Address;
@@ -110,6 +111,7 @@ public class DatasourceDAOImpl implements DatasourceDAO {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        //values.put(DatabaseHandler.KEY_ID, id);
         values.put(DatabaseHandler.KEY_NAME, address.getName()); // Contact Name
         values.put(DatabaseHandler.KEY_LASTNAME, address.getLastName());
         values.put(DatabaseHandler.KEY_EMAIL, address.getEmail());
@@ -119,7 +121,7 @@ public class DatasourceDAOImpl implements DatasourceDAO {
         // updating row
 
          db.update(DatabaseHandler.TABLE_ADDRESS, values, DatabaseHandler.KEY_ID + " = ?",
-                new String[] { String.valueOf(address.getID()) });
+                new String[] { id+"" });
         close();
         return 1;
     }
