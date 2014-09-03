@@ -60,6 +60,15 @@ public class AddressAddActivity extends Activity implements View.OnClickListener
                          dba.addAddress(new Address(txtFname.getText().toString(), txtLname.getText().toString(), txtEmail.getText().toString(), txtCell.getText().toString(), txtHAddress.getText().toString() ));
                          Toast.makeText(getBaseContext(),"Address added to the database",
                                 Toast.LENGTH_SHORT).show();
+                        Intent addressIntent = new Intent(AddressAddActivity.this, AddressActivity.class);
+                        startActivity(addressIntent);
+
+                        /*txtFname.setText(null);
+                        txtLname.setText(null);
+                        txtEmail.setText(null);
+                        txtCell.setText(null);
+                        txtHAddress.setText(null);*/
+
                     }
                     else
                     {
